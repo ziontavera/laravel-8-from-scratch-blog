@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Services\MailchimpNewsletter;
+use Illuminate\Validation\ValidationException;
+
+class NewsletterController extends Controller
+{
+    public function __invoke(MailchimpNewsletter $newsletter)
+    {
+        request()->validate([
+            'email' => 'required|email'
+        ]);
+
+        try {
+            $newsletter->subscribe(request('email'));
+        } catch (\Exception $e) {
+            ddd($e);
+            throw ValidationException::withMessages([
+                'email' => 'Invalid email'
+            ]);
+        }
+
+        return redirect('/')->with('success', 'Thank you for subscribing!');
+    }
+}
