@@ -29,7 +29,10 @@
                 <x-form.error name="category"/>
             </x-form.field>
 
-            <x-form.submit-button>Submit</x-form.submit-button>
+            <div class="flex">
+                <x-form.draft-button>Save as draft</x-form.draft-button>
+                <x-form.submit-button>Publish</x-form.submit-button>
+            </div>
         </form>
     </x-setting>
 

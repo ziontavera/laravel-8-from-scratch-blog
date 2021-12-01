@@ -17,9 +17,15 @@
                         {{$post->title}}
                     </h1>
 
-                    <span class="mt-2 block text-gray-400 text-xs">
-                    Published <time>{{$post->created_at->diffForHumans()}}</time>
-                    </span>
+                    @if (isset($post->published_at))
+                        <span class="mt-2 block text-gray-400 text-xs">
+                            Published <time>{{$post->created_at->diffForHumans()}}</time>
+                        </span>
+                    @else
+                        <span class="mt-2 block text-gray-400 text-xs">
+                            Drafted <time>{{$post->created_at->diffForHumans()}}</time>
+                        </span>
+                    @endif
                 </div>
             </header>
 

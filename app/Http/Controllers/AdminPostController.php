@@ -21,6 +21,16 @@ class AdminPostController extends Controller
 
     public function store()
     {
+        if (request()->has('save')) {
+            $now = date('Y-m-d H:i:s');
+
+            Post::create(array_merge($this->validatePost(), [
+                'user_id' => request()->user()->id,
+                'thumbnail' => request()->file('thumbnail')->store('thumbnails'),
+                'published_at' => $now
+            ]));
+        }
+
         Post::create(array_merge($this->validatePost(), [
             'user_id' => request()->user()->id,
             'thumbnail' => request()->file('thumbnail')->store('thumbnails')
@@ -36,15 +46,18 @@ class AdminPostController extends Controller
 
     public function update(Post $post)
     {
+        $now = date('Y-m-d H:i:s');
         $attributes = $this->validatePost($post);
 
         if ($attributes['thumbnail'] ?? false) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         }
 
-        $post->update($attributes);
+        $post->update(array_merge($attributes, [
+            'published_at' => $now
+        ]));
 
-        return back()->with('success', 'Post Updated!');
+        return redirect('/admin/posts')->with('success', 'Post Updated!');
     }
 
     public function destroy(Post $post)
