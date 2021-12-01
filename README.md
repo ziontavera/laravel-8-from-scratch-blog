@@ -6,9 +6,10 @@ https://laracasts.com/series/laravel-8-from-scratch
 
 ## Setup
 1. Install Laravel - https://laravel.com/docs/8.x/installation
-2. Install PHP https://www.php.net/
-3. DB used: sqlite https://www.servermania.com/kb/articles/install-sqlite/
-4. DB GUI: Tableplus https://tableplus.com/
+2. Install composer - https://getcomposer.org/
+3. Install PHP https://www.php.net/
+4. DB used: sqlite https://www.servermania.com/kb/articles/install-sqlite/
+5. DB GUI: Tableplus https://tableplus.com/
 
 
 
