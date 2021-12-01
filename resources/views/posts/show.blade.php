@@ -6,9 +6,15 @@
                 <div class="col-span-4 lg:text-center lg:pt-14 mb-10">
                     <img src="{{asset('storage/' . $post->thumbnail)}}" alt="" class="rounded-xl">
 
-                    <p class="mt-4 block text-gray-400 text-xs">
-                    Published <time>{{$post->created_at->diffForHumans()}}</time>
-                    </p>
+                    @if (isset($post->published_at))
+                        <span class="mt-2 block text-gray-400 text-xs">
+                            Published <time>{{$post->created_at->diffForHumans()}}</time>
+                        </span>
+                    @else
+                        <span class="mt-2 block text-gray-400 text-xs">
+                            Drafted <time>{{$post->created_at->diffForHumans()}}</time>
+                        </span>
+                    @endif
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img src="/images/lary-avatar.svg" alt="Lary avatar">
