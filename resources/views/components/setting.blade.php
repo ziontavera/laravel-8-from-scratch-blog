@@ -6,7 +6,7 @@
     </h1>
 
     <div class="flex">
-        <aside class="w-48 flex-shrink-0">
+        <aside class="w-48 flex-shrink-0 {{Str::contains($heading, 'Edit Profile') ? 'hidden' : ''}}">
             <h4 class="font-semibold mb-4">Links</h4>
             <ul>
                 <li>
