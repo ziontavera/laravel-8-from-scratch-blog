@@ -29,5 +29,5 @@ Route::middleware('can:admin')->group(function () {
 });
 
 Route::get('{user:username}/profile', [UserController::class, 'index'])->middleware('auth');
-Route::get('{user:username}/edit-profile', [UserController::class, 'edit'])->middleware('auth');
+Route::get('{user:username}/edit-profile', [UserController::class, 'edit'])->middleware('auth')->name('edit-profile');
 Route::patch('users/{user:id}', [UserController::class, 'update'])->middleware('auth');

@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Blade::if('admin', function () {
-            return auth()->user()->can('admin');
+            return auth()->user()?->can('admin');
         });
     }
 }
