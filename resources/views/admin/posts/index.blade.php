@@ -32,13 +32,13 @@
                                     <a href="/admin/posts/{{$post->id}}/edit" class="text-blue-400 hover:text-blue-600">Edit</a>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <form method="POST" action="/admin/posts/{{$post->id}}">
-                                        @csrf
-                                        @method("DELETE")
+                                    <x-modal-confirm>
+                                        <x-slot name="trigger">
+                                            <button class="text-sm text-red-400 hover:text-red-600">Delete</button>
+                                        </x-slot>
 
-                                        <button class="text-sm text-red-400 hover:text-red-600">Delete</button>
-
-                                    </form>
+                                        <x-modal-delete :post="$post"/>
+                                    </x-modal-confirm>
                                 </td>
                             </tr>
                         @endforeach
