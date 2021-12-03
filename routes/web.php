@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\AdminPostController;
@@ -26,3 +27,7 @@ Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth'
 Route::middleware('can:admin')->group(function () {
     Route::resource('admin/posts', AdminPostController::class)->except('show');
 });
+
+Route::get('{user:username}/profile', [UserController::class, 'index'])->middleware('auth');
+Route::get('{user:username}/edit-profile', [UserController::class, 'edit'])->middleware('auth')->name('edit-profile');
+Route::patch('users/{user:id}', [UserController::class, 'update'])->middleware('auth');
